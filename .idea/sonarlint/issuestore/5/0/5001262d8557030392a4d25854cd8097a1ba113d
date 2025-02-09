@@ -1,0 +1,11 @@
+
+g
+java:S1192"JDefine a constant instead of duplicating this literal "requestId" 4 times.(Œó¯ş8ú–Ôâ2
+r
+java:S1104"PMake data a static final constant or non-public and provide accessors if needed.(–ú‚Áøÿÿÿÿ8˜¨Ìâ2
+p
+java:S1104"SMake success a static final constant or non-public and provide accessors if needed.(ŞäŞš8˜¨Ìâ2
+p
+java:S1104"SMake message a static final constant or non-public and provide accessors if needed.(ÕÃØ·8˜¨Ìâ2
+o
+java:S1845I"SRename method "success" to prevent any misunderstanding/clash with field "success".(¥ë…r8†—Ôâ2

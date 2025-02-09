@@ -1,7 +1,6 @@
 package com.llf.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.page.PageMethod;
 import com.llf.model.HotSearchDTO;
 import com.llf.page.Page;
@@ -33,14 +32,14 @@ public class HotSearchServiceImpl implements HotSearchService {
         //查询当前数据是否已经存在
         List<String> searchIdList = hotSearchDOS.stream().map(HotSearchDO::getHotSearchId).collect(
                 Collectors.toList());
-        List<HotSearchDO> sbmyHotSearchDOList = hotSearchRepository.list(
+        List<HotSearchDO> hotSearchDOList = hotSearchRepository.list(
                 new QueryWrapper<HotSearchDO>().lambda().in(HotSearchDO::getHotSearchId, searchIdList));
         //过滤已经存在的数据
-        if (CollectionUtils.isNotEmpty(sbmyHotSearchDOList)) {
-            List<String> tempIdList = sbmyHotSearchDOList.stream().map(HotSearchDO::getHotSearchId).collect(
+        if (CollectionUtils.isNotEmpty(hotSearchDOList)) {
+            List<String> tempIdList = hotSearchDOList.stream().map(HotSearchDO::getHotSearchId).collect(
                     Collectors.toList());
             hotSearchDOS = hotSearchDOS.stream().filter(
-                    sbmyHotSearchDO -> !tempIdList.contains(sbmyHotSearchDO.getHotSearchId())).collect(Collectors.toList());
+                    hotSearchDO -> !tempIdList.contains(hotSearchDO.getHotSearchId())).collect(Collectors.toList());
         }
         if (CollectionUtils.isEmpty(hotSearchDOS)) {
             return Boolean.TRUE;

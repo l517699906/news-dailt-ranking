@@ -30,6 +30,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>sonatype-nexus</id>
+            <url>https://oss.sonatype.org/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
 
@@ -46,11 +56,6 @@
             </dependency>
             <dependency>
                 <groupId>com.llf</groupId>
-                <artifactId>news-daily-ranking-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.llf</groupId>
                 <artifactId>news-daily-ranking-dao</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -61,7 +66,7 @@
             </dependency>
             <dependency>
                 <groupId>com.llf</groupId>
-                <artifactId>news-daily-ranking-start</artifactId>
+                <artifactId>C-start</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

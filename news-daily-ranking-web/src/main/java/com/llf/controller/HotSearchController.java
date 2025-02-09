@@ -29,8 +29,8 @@ public class HotSearchController {
         return ResultModel.success(CACHE_MAP.get(type.toUpperCase()));
     }
 
-    @GetMapping("/testQueryByType")
-    public ResultModel<Page<HotSearchDTO>> testQueryByType(@RequestParam(required = true) String type) {
+    @GetMapping("/pageQueryHotSearchByType")
+    public ResultModel<Page<HotSearchDTO>> pageQueryHotSearchByType(@RequestParam(required = true) String type) {
         return ResultModel.success(hotSearchService.pageQueryHotSearchByType(type,1,9));
     }
 

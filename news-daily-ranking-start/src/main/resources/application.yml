@@ -104,3 +104,17 @@ mybatis:
     # MyBatis-Plus的Mapper文件位置
     mapper-locations: classpath*:/mybatis/mapper/*.xml
 
+#xxl-job
+xxl:
+  job:
+    open: true
+    admin:
+      addresses: http://127.0.0.1:12000/xxl-job-admin
+    accessToken: default_token
+    executor:
+      appname: news-daily-ranking
+      logpath: /root/logs/xxl-job/jobhandler
+      logretentiondays: 30
+      address:
+      ip:
+      port: 9999
