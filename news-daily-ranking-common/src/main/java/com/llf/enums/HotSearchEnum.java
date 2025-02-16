@@ -16,7 +16,11 @@ public enum HotSearchEnum {
     TIEBA("TIEBA", "贴吧"),
     SOUGOU("SOUGOU", "搜狗"),
     TENCENT("TENCENT", "腾讯"),
-    TOUTIAO("TOUTIAO", "头条");
+    TOUTIAO("TOUTIAO", "头条"),
+    WEIBO("WEIBO", "微博"),
+    HUPU("HUPU", "虎扑"),
+    JUEJIN("JUEJIN", "掘金"),
+    CSDN("CSDN", "CSDN");
 
     private String code;
     private String desc;

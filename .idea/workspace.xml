@@ -5,45 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="515a75a0-48ec-4ec4-8675-31c4b87a466a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/model/VisitorCountDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/AddressUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/CacheRedisUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/DateUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/DeviceUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/HttpContextUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/IpUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/util/UUIDUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/entity/VisitLogDO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/mapper/VisitLogMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/repository/VisitLogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/repository/impl/VisitLogRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/sougou/SougouHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/tencent/TencentHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/tieba/TiebaHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/toutiao/ToutiaoHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/aspect/visit/VisitLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/aspect/visit/VisitLogAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/service/VisitLogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/service/impl/VisitLogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/vite.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/csdn/CsdnHotSearchJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/hupu/HupuHotSearchJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/juejin/JuejinHotSearchJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/weibo/WeiboHotSearchJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/enums/HotSearchEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/enums/HotSearchEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/zhihu/ZhihuHotSearchJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/zhihu/ZhihuHotSearchJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-start/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/css/ chunk-vendors.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/css/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/img/baidu-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/img/bilibili-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/img/douyin-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/img/zhihu-icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/static/js/chunk-vendors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-web/src/main/java/com/llf/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-web/src/main/java/com/llf/controller/IndexController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +191,8 @@
       <workItem from="1739587372268" duration="1088000" />
       <workItem from="1739588489707" duration="1464000" />
       <workItem from="1739631683981" duration="1054000" />
-      <workItem from="1739690357044" duration="8160000" />
+      <workItem from="1739690357044" duration="9074000" />
+      <workItem from="1739715332700" duration="2764000" />
     </task>
     <task id="LOCAL-00001" summary="编写百度、抖音热搜定时任务">
       <created>1725807941470</created>
@@ -254,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739077050971</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="新增工具类、新增页面访问记录">
+      <created>1739705651652</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739705651652</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +252,7 @@
     <MESSAGE value="初始化前端" />
     <MESSAGE value="完善功能" />
     <MESSAGE value="接入xxl-job、添加b站热榜" />
-    <option name="LAST_COMMIT_MESSAGE" value="接入xxl-job、添加b站热榜" />
+    <MESSAGE value="新增工具类、新增页面访问记录" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增工具类、新增页面访问记录" />
   </component>
 </project>
