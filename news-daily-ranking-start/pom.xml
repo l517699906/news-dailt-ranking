@@ -89,6 +89,7 @@
                     <include>**/*.html</include>
                     <include>**/*.js</include>
                     <include>**/*.css</include>
+                    <include>**/*.svg</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
@@ -100,6 +101,7 @@
                     <include>**/*.ttf</include>
                     <include>**/*.xdb</include>
                     <include>**/*.jks</include>
+                    <include>**/*.svg</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

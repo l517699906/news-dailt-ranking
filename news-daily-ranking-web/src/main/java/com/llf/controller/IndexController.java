@@ -1,5 +1,6 @@
 package com.llf.controller;
 
+import com.llf.aspect.visit.VisitLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("/")
+    @VisitLog
     public String index(){
         return "index";
     }

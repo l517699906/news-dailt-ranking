@@ -12,7 +12,11 @@ public enum HotSearchEnum {
     DOUYIN("DOUYIN", "抖音"),
     BAIDU("BAIDU", "百度"),
     ZHIHU("ZHIHU", "知乎"),
-    BILIBILI("BILIBILI", "B站");
+    BILIBILI("BILIBILI", "B站"),
+    TIEBA("TIEBA", "贴吧"),
+    SOUGOU("SOUGOU", "搜狗"),
+    TENCENT("TENCENT", "腾讯"),
+    TOUTIAO("TOUTIAO", "头条");
 
     private String code;
     private String desc;
