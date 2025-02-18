@@ -14,6 +14,6 @@ public interface VisitLogMapper extends BaseMapper<VisitLogDO> {
     @Select("SELECT COUNT(DISTINCT ip) FROM visit_log WHERE gmt_create BETWEEN #{startTime} AND #{endTime}")
     int queryUvByStartTimeAndEndTime(@Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
-    @Select("SELECT COUNT(DISTINCT ip) FROM t_sbmy_visit_log")
+    @Select("SELECT COUNT(DISTINCT ip) FROM visit_log")
     int queryUv();
 }

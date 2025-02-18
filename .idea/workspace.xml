@@ -4,13 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="515a75a0-48ec-4ec4-8675-31c4b87a466a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/csdn/CsdnHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/hupu/HupuHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/juejin/JuejinHotSearchJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news-daily-ranking-job/src/main/java/com/llf/job/weibo/WeiboHotSearchJob.java" afterDir="false" />
+    <list default="true" id="515a75a0-48ec-4ec4-8675-31c4b87a466a" name="Changes" comment="新增模块">
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/model/SkylineWebcamsDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/model/WordCloudDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/entity/SysConfigDO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/mapper/SysConfigMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/repository/SysConfigRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/repository/impl/SysConfigRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/cache/hotSearch/HotSearchCacheManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/cache/sys/SysConfigCacheManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/service/SysConfigService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/service/convert/SysConfigConvert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-service/src/main/java/com/llf/service/impl/SysConfigServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/ stopwords/StopWords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-start/src/main/resources/ip2region/ip2region.xdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-web/src/main/java/com/llf/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-web/src/main/java/com/llf/controller/WelcomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news-daily-ranking-web/src/main/java/com/llf/controller/WordCloudController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/enums/HotSearchEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-common/src/main/java/com/llf/enums/HotSearchEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/mapper/VisitLogMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/news-daily-ranking-dao/src/main/java/com/llf/dao/mapper/VisitLogMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +45,9 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="b6d7d15e-7986-4dbf-8e1f-4326b9a9bf7f" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -94,7 +109,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.6264501&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;32e53f93f0f393dc625b0ceb087c2a39&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -104,6 +119,7 @@
       <recent name="E:\idea\news-daily-ranking\news-daily-ranking-dao\src\main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\idea\news-daily-ranking\news-daily-ranking-start\src\main\resources\ip2region" />
       <recent name="E:\idea\news-daily-ranking\news-daily-ranking-start\src\main\resources\static" />
       <recent name="E:\news-daily-ranking\news-daily-ranking-start\src\main\resources" />
     </key>
@@ -192,7 +208,8 @@
       <workItem from="1739588489707" duration="1464000" />
       <workItem from="1739631683981" duration="1054000" />
       <workItem from="1739690357044" duration="9074000" />
-      <workItem from="1739715332700" duration="2764000" />
+      <workItem from="1739715332700" duration="3481000" />
+      <workItem from="1739885919555" duration="5943000" />
     </task>
     <task id="LOCAL-00001" summary="编写百度、抖音热搜定时任务">
       <created>1725807941470</created>
@@ -229,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1739705651652</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="新增模块">
+      <created>1739718360920</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739718360920</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +277,7 @@
     <MESSAGE value="完善功能" />
     <MESSAGE value="接入xxl-job、添加b站热榜" />
     <MESSAGE value="新增工具类、新增页面访问记录" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增工具类、新增页面访问记录" />
+    <MESSAGE value="新增模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增模块" />
   </component>
 </project>
