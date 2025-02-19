@@ -2,6 +2,7 @@ package com.llf.job.tieba;
 
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.common.collect.Lists;
+import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.dao.entity.HotSearchDO;
 import com.llf.model.HotSearchDetailDTO;
 import com.llf.service.HotSearchService;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLDecoder;
@@ -27,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.llf.cache.NdrHotSearchCache.CACHE_MAP;
 import static com.llf.enums.HotSearchEnum.TIEBA;
 
 /**
@@ -42,6 +43,9 @@ public class TiebaHotSearchJob {
 
     @Autowired
     private HotSearchService hotSearchService;
+
+    @Resource
+    private HotSearchCacheManager hotSearchCacheManager;
 
     @PostConstruct
     public void init() {
@@ -84,7 +88,7 @@ public class TiebaHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            CACHE_MAP.put(TIEBA.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache(TIEBA.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

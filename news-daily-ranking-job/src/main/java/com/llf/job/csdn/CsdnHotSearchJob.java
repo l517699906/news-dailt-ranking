@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.common.collect.Lists;
+import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.dao.entity.HotSearchDO;
 import com.llf.model.HotSearchDetailDTO;
 import com.llf.service.HotSearchService;
@@ -18,12 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.llf.cache.NdrHotSearchCache.CACHE_MAP;
 import static com.llf.enums.HotSearchEnum.CSDN;
 
 /**
@@ -38,6 +39,9 @@ public class CsdnHotSearchJob {
 
     @Autowired
     private HotSearchService hotSearchService;
+
+    @Resource
+    private HotSearchCacheManager hotSearchCacheManager;
 
     @XxlJob("csdnHotSearchJob")
     public ReturnT<String> hotSearch(String param) throws IOException {
@@ -79,7 +83,7 @@ public class CsdnHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            CACHE_MAP.put(CSDN.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache(CSDN.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))
                     //更新时间

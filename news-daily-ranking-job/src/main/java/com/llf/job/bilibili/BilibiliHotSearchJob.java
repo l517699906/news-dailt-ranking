@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import com.google.common.collect.Lists;
+import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.dao.entity.HotSearchDO;
 import com.llf.model.HotSearchDetailDTO;
 import com.llf.service.HotSearchService;
@@ -26,8 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
-import static com.llf.cache.NdrHotSearchCache.CACHE_MAP;
 import static com.llf.enums.HotSearchEnum.BILIBILI;
 
 /**
@@ -42,6 +43,9 @@ public class BilibiliHotSearchJob {
 
     @Autowired
     private HotSearchService hotSearchService;
+
+    @Resource
+    private HotSearchCacheManager hotSearchCacheManager;
 
     @XxlJob("bilibiliHotSearchJob")
     public ReturnT<String> hotSearch(String param) throws IOException {
@@ -84,7 +88,7 @@ public class BilibiliHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            CACHE_MAP.put(BILIBILI.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache(BILIBILI.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             sbmyHotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

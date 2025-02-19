@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.common.collect.Lists;
 
+import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.dao.entity.HotSearchDO;
 import com.llf.model.HotSearchDetailDTO;
 import com.llf.service.HotSearchService;
@@ -26,8 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
-import static com.llf.cache.NdrHotSearchCache.CACHE_MAP;
 import static com.llf.enums.HotSearchEnum.ZHIHU;
 
 /**
@@ -42,6 +43,9 @@ public class ZhihuHotSearchJob {
 
     @Autowired
     private HotSearchService hotSearchService;
+
+    @Resource
+    private HotSearchCacheManager hotSearchCacheManager;
 
     /**
      * 定时触发爬虫方法，1个小时执行一次
@@ -87,7 +91,7 @@ public class ZhihuHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            CACHE_MAP.put(ZHIHU.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache(ZHIHU.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

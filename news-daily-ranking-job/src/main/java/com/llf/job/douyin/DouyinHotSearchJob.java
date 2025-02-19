@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.google.common.collect.Lists;
+import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.dao.entity.HotSearchDO;
 import com.llf.model.HotSearchDetailDTO;
 import com.llf.service.HotSearchService;
@@ -23,7 +24,6 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.llf.cache.NdrHotSearchCache.CACHE_MAP;
 import static com.llf.enums.HotSearchEnum.DOUYIN;
 
 /**
@@ -38,6 +38,9 @@ public class DouyinHotSearchJob {
 
     @Resource
     private HotSearchService hotSearchService;
+
+    @Resource
+    private HotSearchCacheManager hotSearchCacheManager;
 
     /**
      * 定时触发爬虫方法，1个小时执行一次
@@ -76,7 +79,7 @@ public class DouyinHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            CACHE_MAP.put(DOUYIN.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache(DOUYIN.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))
                     //更新时间

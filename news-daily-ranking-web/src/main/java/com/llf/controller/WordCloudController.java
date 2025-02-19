@@ -7,14 +7,21 @@ import com.google.common.collect.Sets;
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.llf.cache.hotSearch.HotSearchCacheManager;
 import com.llf.cache.sys.SysConfigCacheManager;
+import com.llf.enums.HotSearchEnum;
 import com.llf.model.HotSearchDTO;
+import com.llf.model.HotSearchDetailDTO;
 import com.llf.model.WordCloudDTO;
 import com.llf.result.ResultModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -22,9 +29,14 @@ import java.util.stream.Collectors;
  * @desc: 热搜标题分词接口
  *
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/hotSearch/wordCloud")
 public class WordCloudController {
+
+    @Resource
+    @Qualifier("hotSearchRedisTemplate")
+    private RedisTemplate<String, HotSearchDetailDTO> redisTemplate;
 
     private static Set<String> STOP_WORDS;
     private static JSONArray WEIGHT_WORDS_ARRAY;
@@ -42,12 +54,72 @@ public class WordCloudController {
      * @return
      */
     private List<HotSearchDTO> gatherHotSearchData() {
-        String stopWordsStr = SysConfigCacheManager.getConfigByGroupCodeAndKey("WordCloud", "StopWords");
+        // 1. 配置项获取（增强空值保护）
+        String stopWordsStr = Optional.ofNullable(
+                SysConfigCacheManager.getConfigByGroupCodeAndKey("WordCloud", "StopWords")
+        ).orElse("");
         STOP_WORDS = Sets.newHashSet(stopWordsStr.split(","));
-        WEIGHT_WORDS_ARRAY = JSONArray.parseArray(SysConfigCacheManager.getConfigByGroupCodeAndKey("WordCloud", "WeightWords"));
-        List<HotSearchDTO> hotSearchDTOS = new ArrayList<>();
-        HotSearchCacheManager.CACHE_MAP.forEach((key, detail) -> hotSearchDTOS.addAll(detail.getHotSearchDTOList()));
-        return hotSearchDTOS;
+
+        String weightWordsStr = Optional.ofNullable(
+                SysConfigCacheManager.getConfigByGroupCodeAndKey("WordCloud", "WeightWords")
+        ).orElse("[]");
+        WEIGHT_WORDS_ARRAY = JSONArray.parseArray(weightWordsStr);
+
+        // 2. Redis缓存查询（带空值过滤）
+        return getAllHotSearchWithMonitor()
+                .stream()
+                .filter(Objects::nonNull) // 过滤空DTO
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 从Redis获取所有平台的热搜数据
+     */
+    public List<HotSearchDTO> getAllHotSearchWithMonitor() {
+        // 获取所有枚举项
+        HotSearchEnum[] allPlatforms = HotSearchEnum.values();
+
+        // 生成所有平台Redis键（直接使用枚举code）
+        List<String> redisKeys = Arrays.stream(allPlatforms)
+                .map(e -> "ndr:hotsearch:" + e.getCode())
+                .collect(Collectors.toList());
+
+        // 批量获取Redis缓存
+        List<HotSearchDetailDTO> details = redisTemplate.opsForValue()
+                .multiGet(redisKeys)
+                .stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        // 找出缺失平台（通过枚举对比）
+        Set<String> cachedPlatforms = details.stream()
+                .flatMap(dto -> dto.getHotSearchDTOList().stream())
+                .map(HotSearchDTO::getHotSearchResource) // 这里获取资源标识字段
+                .collect(Collectors.toSet());
+
+        List<String> missingPlatforms = Arrays.stream(allPlatforms)
+                .filter(e -> !cachedPlatforms.contains(e.getCode()))
+                .map(HotSearchEnum::getDesc)
+                .collect(Collectors.toList());
+
+        if (!missingPlatforms.isEmpty()) {
+            log.warn("以下平台数据缺失: {}", missingPlatforms);
+        }
+
+        // 合并数据
+        return details.stream()
+                .map(HotSearchDetailDTO::getHotSearchDTOList)
+                .filter(Objects::nonNull)
+                .flatMap(List::stream)
+                .filter(dto -> {
+                    // 过滤无效平台数据
+                    boolean valid = HotSearchEnum.of(Byte.parseByte(dto.getHotSearchResource())) != null;
+                    if (!valid) {
+                        log.error("发现未知平台数据: {}", dto.getHotSearchResource());
+                    }
+                    return valid;
+                })
+                .collect(Collectors.toList());
     }
 
     /**
