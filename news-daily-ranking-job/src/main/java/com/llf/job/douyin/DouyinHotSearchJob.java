@@ -79,7 +79,7 @@ public class DouyinHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(DOUYIN.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + DOUYIN.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))
                     //更新时间

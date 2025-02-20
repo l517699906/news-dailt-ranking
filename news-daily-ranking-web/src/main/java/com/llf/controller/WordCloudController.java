@@ -13,15 +13,12 @@ import com.llf.model.HotSearchDetailDTO;
 import com.llf.model.WordCloudDTO;
 import com.llf.result.ResultModel;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -35,8 +32,7 @@ import java.util.stream.Collectors;
 public class WordCloudController {
 
     @Resource
-    @Qualifier("hotSearchRedisTemplate")
-    private RedisTemplate<String, HotSearchDetailDTO> redisTemplate;
+    private HotSearchCacheManager hotSearchCacheManager;
 
     private static Set<String> STOP_WORDS;
     private static JSONArray WEIGHT_WORDS_ARRAY;
@@ -85,11 +81,7 @@ public class WordCloudController {
                 .collect(Collectors.toList());
 
         // 批量获取Redis缓存
-        List<HotSearchDetailDTO> details = redisTemplate.opsForValue()
-                .multiGet(redisKeys)
-                .stream()
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+        List<HotSearchDetailDTO> details = hotSearchCacheManager.batchGetCache(redisKeys);
 
         // 找出缺失平台（通过枚举对比）
         Set<String> cachedPlatforms = details.stream()
@@ -113,7 +105,7 @@ public class WordCloudController {
                 .flatMap(List::stream)
                 .filter(dto -> {
                     // 过滤无效平台数据
-                    boolean valid = HotSearchEnum.of(Byte.parseByte(dto.getHotSearchResource())) != null;
+                    boolean valid = HotSearchEnum.of(dto.getHotSearchResource()) != null;
                     if (!valid) {
                         log.error("发现未知平台数据: {}", dto.getHotSearchResource());
                     }

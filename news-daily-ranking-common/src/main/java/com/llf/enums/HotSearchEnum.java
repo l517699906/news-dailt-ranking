@@ -28,4 +28,8 @@ public enum HotSearchEnum {
     public static HotSearchEnum of(byte code) {
         return EnumSet.allOf(HotSearchEnum.class).stream().filter(x -> x.code.equals(code)).findFirst().orElse(null);
     }
+
+    public static HotSearchEnum of(String code) {
+        return EnumSet.allOf(HotSearchEnum.class).stream().filter(x -> x.code.equals(code)).findFirst().orElse(null);
+    }
 }

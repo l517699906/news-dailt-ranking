@@ -88,7 +88,7 @@ public class BilibiliHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(BILIBILI.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + BILIBILI.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             sbmyHotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

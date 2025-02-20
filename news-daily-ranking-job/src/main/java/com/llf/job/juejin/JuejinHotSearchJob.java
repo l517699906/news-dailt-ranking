@@ -83,7 +83,7 @@ public class JuejinHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(JUEJIN.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + JUEJIN.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))
                     //更新时间

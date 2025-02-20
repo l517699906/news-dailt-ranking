@@ -78,7 +78,7 @@ public class HupuHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(HUPU.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + HUPU.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

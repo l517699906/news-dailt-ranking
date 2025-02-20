@@ -83,7 +83,7 @@ public class BaiduHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(BAIDU.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + BAIDU.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))

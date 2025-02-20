@@ -6,6 +6,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class HotSearchCacheManager {
@@ -29,5 +32,16 @@ public class HotSearchCacheManager {
      */
     public HotSearchDetailDTO getCache(String key) {
         return hotSearchRedisTemplate.opsForValue().get(key);
+    }
+
+    /**
+     * 批量获取多平台缓存数据
+     */
+    public List<HotSearchDetailDTO> batchGetCache(List<String> keys) {
+        return hotSearchRedisTemplate.opsForValue()
+                .multiGet(keys)
+                .stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

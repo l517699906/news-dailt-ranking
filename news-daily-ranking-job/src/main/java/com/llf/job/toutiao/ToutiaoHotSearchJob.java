@@ -81,7 +81,7 @@ public class ToutiaoHotSearchJob {
                 return ReturnT.SUCCESS;
             }
             //数据加到缓存中
-            hotSearchCacheManager.setCache(TOUTIAO.getCode(), HotSearchDetailDTO.builder()
+            hotSearchCacheManager.setCache("ndr:hotsearch:" + TOUTIAO.getCode(), HotSearchDetailDTO.builder()
                     //热搜数据
                     .hotSearchDTOList(
                             hotSearchDOList.stream().map(HotSearchConvert::toDTOWhenQuery).collect(Collectors.toList()))
